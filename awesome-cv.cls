@@ -1,15 +1,32 @@
 %% Start of file `awesome-cv.cls'.
-% Awesome CV Class File
+%% Copyright 2020 Claud D. Park, with contributions from Brian Ballsun-Stanton
+%
+% Awesome CV Class File with CSV and BibTEX
 %
 % This class has been downloaded from:
-% https://github.com/posquit0/Awesome-CV
+% https://github.com/Denubis/LaTeX-CV-Mk5
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Brian Ballsun-Stanton.
+%
+% This work consists of the files awesome-cv.cls
 %
 % Author:
 % Claud D. Park <posquit0.bj@gmail.com>
 % http://www.posquit0.com
+% Brian Ballsun-Stanton <brian.ballsun-stanton@mq.edu.au>
 %
 % Notes:
-% 1) This class file defines the structure and layout of the template file (cv.tex, resume.tex).
+% 1) This class file defines the structure and layout of the template file (cv.tex, coverletter.tex, resume.tex).
 % 2) It has been written in such a way that under most circumstances you
 % should not need to edit it.
 %
@@ -88,6 +105,35 @@
   pdfsubject={},
   pdfkeywords={}
 }
+% ORCID icon
+\usepackage{academicons}
+
+\usepackage[
+backend=biber,
+style=apa,
+citestyle=authoryear,
+sorting=ydnt
+]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+
+
+\RequirePackage{microtype}
+
+% https://tex.stackexchange.com/a/51439
+
+\renewcommand*{\bibfont}{\fontsize{9pt}{1em}\bodyfontlight\upshape}
+\renewcommand\UrlFont{\fontsize{9pt}{1em}\bodyfontlight\upshape}
+
+
+\AtEveryBibitem{\begin{minipage}[b]{0.5cm}\begin{flushleft}\entrylocationstyle{\strfield{year}}\end{flushleft}\end{minipage}\hspace{0.5cm}\clearfield{labelyear}}
+\setlength{\bibhang}{1.5cm}
+
+
+\defbibheading{bibliography}[\bibname]{%
+\cvsubsection{#1}%
+\markboth{#1}{#1}}
+
+\usepackage{ifthen}
 
 
 %-------------------------------------------------------------------------------
@@ -161,7 +207,7 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
+%\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
 % Set font for header (default is Roboto)
 \newfontfamily\headerfont[
   Path=\@fontdir,
@@ -204,6 +250,7 @@
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+\newcommand*{\entrylocationstylebold}[1]{{\fontsize{8pt}{1em}\bodyfontlight\bfseries\color{graytext} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
 % For elements of subentry
@@ -259,7 +306,9 @@
 % Usage: \firstname{<firstname>}
 % Usage: \lastname{<lastname>}
 % Usage: \familyname{<familyname>}
-\newcommand*{\name}[2]{\def\@firstname{#1}\def\@lastname{#2}}
+
+\newcommand*{\name}[3]{\def\@persontitle{#1}\def\@firstname{#2}\def\@lastname{#3}}
+\newcommand*{\persontitle}[1]{\def\@persontitle{#1}}
 \newcommand*{\firstname}[1]{\def\@firstname{#1}}
 \newcommand*{\lastname}[1]{\def\@lastname{#1}}
 \newcommand*{\familyname}[1]{\def\@lastname{#1}}
@@ -288,6 +337,10 @@
 % Defines writer's github (optional)
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\def\@github{#1}}
+
+% Defines writer's orcid (optional)
+% Usage: \orcid{<orcid-nick>}
+\newcommand*{\orcid}[1]{\def\@orcid{#1}}
 
 % Defines writer's gitlab (optional)
 % Usage: \gitlab{<gitlab-nick>}
@@ -448,7 +501,7 @@
   \end{minipage}
   \begin{minipage}[c]{\headertextwidth}
     \ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
-    \headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
+    \headerfirstnamestyle{\@persontitle{}\acvHeaderNameDelim}\headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
     \\[\acvHeaderAfterNameSkip]%
     \ifthenelse{\isundefined{\@position}}{}{\headerpositionstyle{\@position\\[\acvHeaderAfterPositionSkip]}}%
     \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\[\acvHeaderAfterAddressSkip]}}%
@@ -478,6 +531,12 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
+        }%
+      \ifthenelse{\isundefined{\@orcid}}%
+        {}%
+        {%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+          \href{https://orcid.org/\@orcid}{\acvHeaderIconSep{}\textcolor[HTML]{A6CE39}{\aiOrcid}\@orcid}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
@@ -576,6 +635,14 @@
   \phantomsection
 }
 
+\newcommand{\lettersubsection}[1]{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-3mm}
+  \subsectionstyle{#1}
+  \phantomsection
+}
+
+
 % Define a paragraph for CV
 \newenvironment{cvparagraph}{%
   \vspace{\acvSectionContentTopSkip}
@@ -593,19 +660,58 @@
 }{%
   \end{center}
 }
+
+\newcommand*{\cventrylong}[7][.25em]{%
+  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+    \raggedleft\hintstyle{#2} &{%
+        {\bfseries#3}%
+        \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
+        \ifthenelse{\equal{#5}{}}{}{, #5}%
+        \ifthenelse{\equal{#6}{}}{}{, #6}%
+    }%
+  \end{tabular}%
+  {\small#7}%
+  \par\addvspace{#1}}
+% https://tex.stackexchange.com/a/139128  
+  
+  
+% A custom version of the itemize environment that sets the appropriate left
+% margin for use inside \cventylong
+\newlist{cvitemize}{itemize}{1}
+\setlist[cvitemize]{label=\labelitemi,%
+leftmargin=\hintscolumnwidth+\separatorcolumnwidth+\labelwidth+\labelsep}
+
+
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  %\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5cm} R{5cm}}
     \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+      {\entrypositionstyle{#1} & \fluf\entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2}\newline{}\entrypositionstyle{#1} & \entrylocationstyle{#3}\newline{}\entrydatestyle{#4}}
+    \ifempty{#5}{}{\\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
   \end{tabular*}%
+  \par\addvspace{0pt}
+}
+
+
+\newcommand*{\cvgrant}[7]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  %\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 5cm} R{5cm}}
+    
+      \entrytitlestyle{#2}\newline{}\entrypositionstyle{#1}\newline{}\entrydatestyle{#5} & \entrylocationstyle{#3}\newline{}\entrylocationstylebold{#4}\newline{}\entrydatestyle{#6} 
+      \ifempty{#7}{}{\\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#7}}}
+  \end{tabular*}%
+  \par\addvspace{0pt}
 }
 
 % Define an environment for cvsubentry
@@ -639,7 +745,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{2cm} R{0.25cm} L{\textwidth - 5.25cm} R{2.5cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -647,7 +753,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+  \honordatestyle{#4} & & \honorpositionstyle{#1}\ifempty{#2}{}{,} \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
 % Define an environment for cvskill
@@ -665,7 +771,7 @@
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvskill}[2]{%
-	\skilltypestyle{#1} & \skillsetstyle{#2} \\
+  \skilltypestyle{#1} & \skillsetstyle{#2} \\
 }
 
 % Define an environment for cvitems(for cventry)
@@ -681,6 +787,17 @@
   \vspace{-4.0mm}
 }
 
+\newenvironment{letteritems}{%
+  \vspace{-2.0mm}
+  \begin{justify}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+    \setlength{\parskip}{0pt}
+    \renewcommand{\labelitemi}{\bullet}
+}{%
+  \end{itemize}
+  \end{justify}
+  \vspace{2.0mm}
+}
 
 %-------------------------------------------------------------------------------
 %                Commands for elements of Cover Letter
@@ -715,7 +832,7 @@
   \end{singlespace}
   \ifthenelse{\isundefined{\@lettertitle}}
     {}
-    {\lettertitlestyle{\@lettertitle} \\}
+    {\lettertitlestyle{\@lettertitle} \\}\\
   \lettertextstyle{\@letteropening}
 }
 
@@ -728,7 +845,27 @@
   \ifthenelse{\isundefined{\@letterenclosure}}
     {\\}
     {%
-      \\\\\\
-      \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
+      \vfill
+      \letterenclosurestyle{\@letterenclname: \@letterenclosure} 
     }
 }
+
+%https://stackoverflow.com/a/9420823
+\makeatletter
+\newcounter{pagecount}
+\newcommand{\limitpages}[1]{
+    \setcounter{pagecount}{0}%
+    \gdef\maxpages{#1}%
+    \ifx\latex@outputpage\@undefined\relax%
+        \global\let\latex@outputpage\@outputpage%
+    \fi%
+    \gdef\@outputpage{%
+        \addtocounter{pagecount}{1}%
+        \ifnum\value{pagecount}>\maxpages\relax%
+            % Do not output the page
+        \else%
+            \latex@outputpage%
+        \fi%
+    }%
+}
+\makeatother

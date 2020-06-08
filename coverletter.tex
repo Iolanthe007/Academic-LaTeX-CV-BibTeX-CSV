@@ -1,0 +1,154 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for Cover Letter
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Authors:
+% Claud D. Park <posquit0.bj@gmail.com>
+% Lars Richter <mail@ayeks.de>
+% Brian Ballsun-Stanton (brian.ballsun-stanton@mq.edu.au)
+%
+% Template license:
+% CC-BY-SA 4.0 International
+%
+
+
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[11pt, a4paper]{awesome-cv}
+
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Specify the location of the included fonts
+\fontdir[fonts/]
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%         awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{CA63A8}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{false}
+
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+\input{data/metadata}
+% Just so we're consistent across documents
+
+%-------------------------------------------------------------------------------
+%	LETTER INFORMATION
+%	All of the below lines must be filled out
+%-------------------------------------------------------------------------------
+% The company being applied to
+\recipient
+ {Office of the Pro Vice-Chancellor (Research Performance)}
+ {Macquarie University\\Balaclava Rd\\Macquarie Park NSW 2109}
+% The date on the letter, default is the date of compilation
+\letterdate{\today}
+% The title of the letter
+\lettertitle{Job Application for Research Data Architect, Data Science and eResearch}
+% How the letter is opened
+\letteropening{Dear Professor Barnier,}
+% How the letter is closed
+\letterclosing{Sincerely,}
+% Any enclosures with the letter
+\letterenclosure[Attached]{Detailed response to Selection Criteria, Curriculum Vit\ae{}}
+
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+% Print the header with above personal informations
+% Give optional argument to change alignment(C: center, L: left, R: right)
+\makecvheader[C]
+
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+\makecvfooter
+ {\today}
+ {Dr Brian Ballsun-Stanton~~~·~~~Cover Letter and Selection Criteria Response}
+ {\thepage}
+
+% Print the title with above letter informations
+\makelettertitle
+
+%-------------------------------------------------------------------------------
+%	LETTER CONTENT
+%-------------------------------------------------------------------------------
+\begin{cvletter}
+
+
+I am writing to apply for the position of Research Data Architect in the Data Science and eResearch unit. My experience as the Solutions Architect in the Faculty of Arts, the Carpentries Trainer for the university, and facilitating Data Management Standards with Research Integrity, aligns well with this position's selection criteria. Besides my professional work supporting researchers at the university, I am currently an investigator on three external grants. 
+
+\lettersection{About Me}
+
+I have a PhD in Philosophy from UNSW Australia, a BS (with Highest Honors) and an MS in Information Technology from Rochester Institute of Technology. I have worked as the Technical Director for the FAIMS Project since 2012, deploying geospatial field data collection workflows to over 50 projects worldwide. 
+
+For the last three years, I have worked to design and implement technical solutions for researchers' challenges across the Faculty of Arts. I maintained virtual machines on NCI Tenjin, using them for Natural Language Processing, image processing of Ancient Egyptian tomb art, and web-scraping many data sources. I have created a tool to convert 1000+ citations into \href{https://onwork.edu.au}{onwork.edu.au}. I facilitated interactions between the Faculty of Arts, Google Arts and Culture, and Ubisoft -- leading to the launch of the `Fabricius' AI tool. I trained hundreds of researchers and students in data management, cleaning, and version control. I have written software for many projects to collect, manipulate, and analyse data. Data and papers from my projects have been published for peer review on the Open Science Framework. 
+
+
+\lettersection{Why does Macquarie want me?}
+
+As Research Data Architect for the University, I will leverage my technical expertise and in-depth organisational knowledge to ensure Macquarie becomes a champion of research integrity and impact. My strong commitment to publishing FAIR data and my proven efficiencies in data collection, analysis, publication, archiving and reuse will ensure data in our research outputs across the university are, `As open as possible, and as closed as necessary.' Our data will be publishable, citable, and compliant with the transparency and openness requirements of funding bodies and journals.
+
+My extensive experience in data manipulation is fundamentally interdisciplinary and covers the entire software development life-cycle. I can move between questions from academic researchers as well as those from university staff. Once problems are articulated, I can scope and elaborate technologies to ensure we have found solutions that are responsive to the problems at hand. I then can implement proofs-of-concept myself, or liaise with developers to create production-ready systems and testing regimes to ensure that the solutions \textit{solve} the problem at hand. 
+
+As a Digital Humanist, I bridge the academic and technical worlds, bringing key skills and problem-solving methods from both into play. I have been a Project Manager for large software projects. I have won grants on the strength of my data manipulation. I have designed, elaborated, programmed, tested, and delivered small projects. I have used the Agile software development lifecycle to deliver a project into worldwide use. I am a professional data architect and an excellent fit for this position.
+
+% \makeletterclosing
+
+\clearpage
+
+
+\lettersection{Detailed responses to selection criteria}
+
+\lettersubsection{Outreach, training, and support}
+
+Since 2017 I have been actively engaged in outreach, training, and support of my colleagues at Macquarie University. I am an active Trainer and Instructor in The Carpentries. I have developed Carpentries workshops for webscraping and active data management. I have delivered data collection and analysis solutions to colleagues across the Faculty of Arts. I have deployed field data collection platforms and collaborated with academics around the world. I have worked with OpenStack on NCI Tenjin and deployed highly sensitive research infrastructure to AWS. I mostly work in SQL, Python, \LaTeX{}, and Jekyll static pages served over Github Pages. I have a proven capacity to develop effective research technology training.
+
+
+\lettersubsection{Infrastructure}
+
+I used the Agile methodology and the Rational Unified Process with multiple teams of programmers at external contractors and inside the university to deliver the FAIMS android app for use around the world. I teach colleagues how to use and backup to Cloudstor and have been the primary developer-operations support for the FAIMS cloud infrastructure. 
+
+
+
+% Experience working in or closely with (national) research organisations/facilities or similar (desirable).
+
+\lettersubsection{Technology-enabled research}
+
+I have a significant research profile spanning six grants and eleven peer-reviewed publications, despite spending only two of eight post-PhD years in an academic role. I have enabled innovative research in the Faculty of Arts, providing a scope and consistency impossible without technological support. I have delivered and supported field-research collection solutions around the world. I have created impact and engagement for Macquarie's research.
+
+
+
+\lettersection{What do I want from Macquarie?}
+
+
+The expectations of this position fit my career objectives and skills exactly. The position allows me to make sure my research in Digital Humanities has a real-world impact: innovating, shaping, and improving the `Digital Transformation' of Macquarie in a `digital first world'. I look forward to interviewing for this position and presenting my research to my colleagues. Thank you for your consideration.
+
+\end{cvletter}
+
+
+%-------------------------------------------------------------------------------
+% Print the signature and enclosures with above letter information
+
+\letterenclosure[~]{}
+
+\makeletterclosing
+
+\end{document}
