@@ -7,16 +7,16 @@ With multi-source inputs in `data/` -- I try to preserve a single source of trut
 
 [My public resume](documents/resume.pdf)
 
+<div style="float;left; width:48%">
 ## CV
-![examples/cv.pdf.png](examples/cv.pdf.png)
-
 [Public CV](documents/cv.pdf)
+[![examples/cv.pdf.png](examples/cv.pdf.png)](documents/cv.pdf)
+</div>
+<div style="float;left; width:48%">
+## Cover Letter
+[Public Cover Letter](examples/coverletter.pdf.png)
+[![examples/coverletter.pdf.png](examples/coverletter.pdf.png)
+</div>
 
-## Coverletter
-![examples/coverletter.pdf.png](examples/coverletter.pdf.png)
 
-[Public Cover Letter](documents/coverletter.pdf)
-
-
-
-Based on [@posquit0's Awesome-CV](https://github.com/posquit0/Awesome-CV)
+Based on [@posquit0's Awesome-CV <img src="icon.png" style="width:100px"/> ](https://github.com/posquit0/Awesome-CV)
