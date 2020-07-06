@@ -8,15 +8,15 @@ With multi-source inputs in `data/` -- I try to preserve a single source of trut
 [My public resume](documents/resume.pdf)
 
 <div style="float;left; width:48%">
-## CV
-[Public CV](documents/cv.pdf)
-[![examples/cv.pdf.png](examples/cv.pdf.png)](documents/cv.pdf)
+  <h2>CV</h2>
+  <a href="documents/cv.pdf">Public CV</a>
+  <img src="examples/cv.pdf.png"/>
 </div>
 <div style="float;left; width:48%">
-## Cover Letter
-[Public Cover Letter](examples/coverletter.pdf.png)
-[![examples/coverletter.pdf.png](examples/coverletter.pdf.png)
+  <h2>Cover Letter</h2>
+<a href="documents/coverletter.pdf">Public Cover Letter</a>
+<img src="examples/coverletter.pdf.png"/>
 </div>
 
 
-Based on [@posquit0's Awesome-CV <img src="icon.png" style="width:100px"/> ](https://github.com/posquit0/Awesome-CV)
+Based on <a href="https://github.com/posquit0/Awesome-CV">@posquit0's Awesome-CV <img src="icon.png" style="width:100px"/></a>
