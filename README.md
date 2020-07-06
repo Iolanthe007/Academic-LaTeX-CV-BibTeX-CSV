@@ -17,9 +17,6 @@ With multi-source inputs in `data/` -- I try to preserve a single source of trut
 
 [Public Cover Letter](documents/coverletter.pdf)
 
-## Resume
-![resume.pdf.png](resume.pdf.png)
-
 
 
 Based on [@posquit0's Awesome-CV](https://github.com/posquit0/Awesome-CV)
